@@ -17,7 +17,6 @@ if ($mysql->connect_error) {
 //}
 
 //Авторизация или регистрация пользователя по email
-
 $email = mysqli_real_escape_string($mysql, $_POST['email']);
 $ret = $mysql->query("SELECT * FROM users WHERE email='$email'");
 if (!$ret) {
@@ -27,7 +26,6 @@ if (!$ret) {
 if (empty($ret->fetch_assoc()) && !empty($_POST['email'])) {
     /*insert*/
     $name = mysqli_real_escape_string($mysql, $_POST['name']);
-    $email = mysqli_real_escape_string($mysql, $_POST['email']);
     $phone = mysqli_real_escape_string($mysql, $_POST['phone']);
     $ret = $mysql->query("INSERT INTO users (`name`, email, phone) VALUES ('$name', '$email', '$phone');");
     if (!$ret) {
@@ -48,7 +46,6 @@ if (empty($ret->fetch_assoc()) && !empty($_POST['email'])) {
     }
     $addressId = $mysql->insert_id;
 } else {
-    $email = mysqli_real_escape_string($mysql, $_POST['email']);
     $ret = $mysql->query("SELECT * FROM users WHERE email='$email'");
     if (!$ret) {
         print_r($mysql->error);
@@ -74,7 +71,6 @@ if (!$ret) {
 }
 
 //Получение необходимых данные из БД
-$email = mysqli_real_escape_string($mysql, $_POST['email']);
 $ret = $mysql->query("SELECT details.id, details.address_id FROM details LEFT JOIN users ON details.user_id = users.id WHERE users.email = '$email' ORDER BY details.id DESC;");
 if (!$ret) {
     print_r($mysql->error);

@@ -17,7 +17,7 @@ if (!$ret) {
 }
 $receive = $ret->fetch_all(MYSQLI_ASSOC);
 foreach ($receive as $key => $value) {
-    echo "<b style='font-size: 20px'>".$value['name']." сделал следующие заказы:</b><br />";
+    echo "<b style='font-size: 20px'>".$value['name']." <i style='font-size: 18px'>(email - ".$value['email'].")</i> сделал следующие заказы:</b><br />";
     $id = $value['id'];
     $ret = $mysql->query("SELECT * FROM details WHERE user_id = '$id'");
     if (!$ret) {
