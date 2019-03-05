@@ -1,6 +1,6 @@
 <?php
 require "login.php";
-require "queryAll.php";
+require "functions.php";
 //Получаем всех пользователей
 $query = "SELECT * FROM users";
 $receive = queryAll($pdo, $query);

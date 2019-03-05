@@ -1,10 +1,6 @@
 <?php
 require "login.php";
-require "queryOne.php";
-require "queryAll.php";
-require "queryInsert.php";
-require "mailToUser.php";
-require "createUser.php";
+require "functions.php";
 
 //Авторизация или регистрация пользователя по email
 $user = createUser($pdo);
@@ -46,3 +42,5 @@ $desc = "Ваш заказ будет отправлен по адресу: ул
 $content = "DarkBeefBurger за 500 рублей, 1 шт\n";
 $thanks = $ordersAmount == 1 ? "Спасибо - это ваш первый заказ" : "Спасибо! Это уже $ordersAmount заказ";
 mailToUser($heading, $desc, $content, $thanks);
+require_once './vendor/autoload.php';
+mailToMail($heading, $desc, $content, $thanks);
