@@ -44,3 +44,11 @@ $thanks = $ordersAmount == 1 ? "Спасибо - это ваш первый за
 mailToUser($heading, $desc, $content, $thanks);
 require_once './vendor/autoload.php';
 mailToMail($heading, $desc, $content, $thanks);
+
+$loader = new \Twig\Loader\FilesystemLoader('/');
+$_twig = new \Twig\Environment($loader, ['cache' => '/_cache']);
+try {
+    echo $_twig->render('mail.twig', ['data' => $heading.$desc.$content.$thanks]);
+} catch (\Exception $e) {
+    trigger_error($e->getMessage());
+}

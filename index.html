@@ -523,10 +523,10 @@
                 return new Promise(function (resolve, reject) {
                     let xhr = new XMLHttpRequest();
                     xhr.open('POST', url);
-                    xhr.responseType = 'json';
+                    //xhr.responseType = 'json';
                     xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
                     xhr.addEventListener('load', () => {
-                        resolve(xhr.response);
+                        resolve(xhr.responseText);
                     })
                     xhr.addEventListener('readystatechange', () => {
                         if(xhr.readyState === 4) {
@@ -544,7 +544,7 @@
             }
             sendAjax('form.php', formData)
                 .then(function (response) {
-                    console.log(response);
+                    document.body.innerHTML = response;
                 }, function (response) {
                     console.error(response);
                 })
